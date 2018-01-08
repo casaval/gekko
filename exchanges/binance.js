@@ -32,8 +32,8 @@ var recoverableErrors = new RegExp(
 );
 
 Trader.prototype.retry = function(method, args, error) {
-  if (!error || !error.message.match(recoverableErrors)) {
-    log.error('[binance.js] ', this.name, 'returned an irrecoverable error');
+  if (!error || error.msg && !error.msg.match(recoverableErrors)) {
+    log.error('[binance.js] ', this.name, 'no error or returned an irrecoverable error');
     return;
   }
 
@@ -94,7 +94,7 @@ Trader.prototype.getTrades = function(since, callback, descending) {
 
   if (since) {
     var endTs = moment(since)
-      .add(1, 'd')
+      .add(3600000, 'ms')
       .valueOf();
     var nowTs = moment().valueOf();
 
@@ -406,6 +406,7 @@ Trader.getCapabilities = function() {
       'POWR',
       'QTUM',
       'ZEC',
+      'XRP'
     ],
     markets: [
       // https://www.binance.com/exchange/public/product
@@ -529,6 +530,11 @@ Trader.getCapabilities = function() {
         pair: ['ETH', 'ZEC'],
         minimalOrder: { amount: 0.001, unit: 'asset' },
         precision: 00001,
+      },
+      {
+        pair: ['ETH', 'XRP'],
+        minimalOrder: { amount: 0.001, unit: 'asset' },
+        precision: 0.01,
       },
 
       //Tradeable againt USDT
