@@ -151,7 +151,7 @@ Trader.prototype.getPortfolio = function(callback) {
       { name: this.currency, amount: currencyAmount },
     ];
 
-    return callback(err.message, portfolio);
+    return callback(err && err.message, portfolio);
   };
 
   this.binance.account({}, _.bind(setBalance, this));
