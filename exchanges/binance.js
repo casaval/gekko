@@ -190,7 +190,7 @@ Trader.prototype.getTicker = function(callback) {
       bid: parseFloat(result.bidPrice),
     };
 
-    callback(err.message, ticker);
+    callback(err && err.message, ticker);
   };
 
   // Not exposed by the API yet, have to do it the hard way
