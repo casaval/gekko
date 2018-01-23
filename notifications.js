@@ -1,16 +1,28 @@
-const Pushover = require('node-pushover-client');
+const Push = require( 'pushover-notifications' )
 const util = require(__dirname + '/core/util');
 const config = util.getConfig();
+const token = config.pushover.key;
+const user = config.pushover.user;
  
-const client = new Pushover({
-  token: config.pushover.key,
-  user: config.pushover.user,
+var p = new Push( {
+  user: user,
+  token: token,
 });
  
-client
-  .send({message: 'An error has occured and [instance name] has gone offline.'})
-  .then((res)=>{
-	console.log(res);
-	process.exit(0);
+var msg = {
+  // These values correspond to the parameters detailed on https://pushover.net/api
+  // 'message' is required. All other values are optional.
+  message: 'Bot has gone offline.',	// required
+  title: "Warning / Error",
+  sound: 'magic',
+  device: 'AWS Trader Bot',
+  priority: 1
+}
+ 
+p.send( msg, function( err, result ) {
+  if ( err ) {
+    throw err;
   }
-);
+  console.log( result );
+  process.exit(0);
+})
