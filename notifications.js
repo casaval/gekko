@@ -1,6 +1,5 @@
 const Push = require( 'pushover-notifications' )
-const util = require( __dirname + '/core/util');
-const config = util.getConfig();
+const config = require( __dirname + '/config.js');
 const token = config.pushover.key;
 const user = config.pushover.user;
 const tag = config.pushover.tag;
