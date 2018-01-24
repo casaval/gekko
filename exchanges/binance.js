@@ -29,8 +29,9 @@ var Trader = function(config) {
     key: this.key,
     secret: this.secret,
     timeout: 15000,
-    recvWindow: 60000, // suggested by binance
-    disableBeautification: false
+    recvWindow: 10000, // suggested by binance
+    disableBeautification: false,
+    handleDrift: true,
   });
 
   // Binance has tight timing requirements, this will ask their server for the time and store
