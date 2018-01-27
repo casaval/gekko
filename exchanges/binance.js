@@ -29,7 +29,7 @@ var Trader = function(config) {
     key: this.key,
     secret: this.secret,
     timeout: 15000,
-    recvWindow: 10000, // suggested by binance
+    recvWindow: 5000, // suggested by binance
     disableBeautification: false,
     handleDrift: true,
   });
