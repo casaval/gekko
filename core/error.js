@@ -15,8 +15,6 @@ let AbortError = function (message) {
     this.name = "AbortError";
     this.message = message;
 
-    notifications.error(message);
-
 }
 
 AbortError.prototype = new Error();
