@@ -1,8 +1,6 @@
 const _ = require('lodash');
 
-const notifications = require('../notifications');
-
-let RetryError = function(message) {
+let RetryError = function (message) {
     _.bindAll(this);
 
     this.name = "RetryError";
@@ -11,7 +9,7 @@ let RetryError = function(message) {
 
 RetryError.prototype = new Error();
 
-let AbortError = function(message) {
+let AbortError = function (message) {
     _.bindAll(this);
 
     this.name = "AbortError";
